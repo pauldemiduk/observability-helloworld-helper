@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: my-registry/hello-world:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: CLOUD_PROVIDER
+          value: "aws"  # Change to gcp or azure accordingly
+        - name: CLOUD_REGION
+          value: "us-east-1"
+        - name: CLOUD_ZONE
+          value: "us-east-1a"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+spec:
+  selector:
+    app: hello-world
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "VR+Gp+R6nvH+ylGDUx34399j9zWtQby8JCQt+MKKoX8=",
+  "Source": "hello-world-csharp",
+  "BasePath": "_content/hello-world-csharp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
