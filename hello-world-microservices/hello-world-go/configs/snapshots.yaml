@@ -1,0 +1,250 @@
+  # ✅ Snapshot: Error Rates
+  - id: "snapshot-error-rates"
+    name: "Error Rates Over 24 Hours"
+    createdAt: "2025-02-27T12:00:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-error-rates"
+        name: "API Failure Trends"
+        description: "Tracks the percentage of failed requests over time."
+        queries:
+          - id: "query-api-errors"
+            name: "API Error Rate"
+            data: "5.2% failure rate"
+        errorRates:
+          - id: "error-rate-1"
+            name: "API Failure Rate"
+            totalRequests: 10000
+            failedRequests: 520
+            errorRate: 5.2
+            topErrorCodes:
+              - code: 500
+                count: 300
+              - code: 404
+                count: 150
+              - code: 403
+                count: 70
+            failedEndpoints:
+              - endpoint: "/checkout"
+                failures: 220
+                failureRate: 2.2
+              - endpoint: "/login"
+                failures: 180
+                failureRate: 1.8
+              - endpoint: "/search"
+                failures: 120
+                failureRate: 1.2
+
+  # ✅ Snapshot: Slow API Calls
+  - id: "snapshot-slowest-api"
+    name: "Slowest API Calls Over 24 Hours"
+    createdAt: "2025-02-27T12:30:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-slowest-api"
+        name: "Slow API Call Trends"
+        description: "Tracks API requests that exceed predefined latency thresholds."
+        queries:
+          - id: "query-api-latency"
+            name: "Slowest API Calls"
+            data: "P99: 1200ms"
+        slowestAPICalls:
+          - id: "slow-call-1"
+            name: "Slowest API Calls"
+            slowRequests: 145
+            p95Latency: 800
+            p99Latency: 1200
+            topEndpoints:
+              - endpoint: "/checkout"
+                latency: 1300
+              - endpoint: "/login"
+                latency: 1100
+              - endpoint: "/search"
+                latency: 950
+
+  # ✅ Snapshot: Security Events
+  - id: "snapshot-security-events"
+    name: "Security Events (Failed Login Attempts)"
+    createdAt: "2025-02-27T12:45:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-security-events"
+        name: "Security Incidents"
+        description: "Tracks failed login attempts and other security anomalies."
+        queries:
+          - id: "query-failed-logins"
+            name: "Failed Logins"
+            data: "12,500 failed attempts"
+        failedEndpoints:
+          - endpoint: "/login"
+            failures: 9000
+            failureRate: 72.0
+          - endpoint: "/password-reset"
+            failures: 2500
+            failureRate: 20.0
+          - endpoint: "/admin-access"
+            failures: 1000
+            failureRate: 8.0
+
+  # ✅ Snapshot: Database Query Performance
+  - id: "snapshot-db-performance"
+    name: "Database Query Performance"
+    createdAt: "2025-02-27T13:00:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-db-performance"
+        name: "Database Query Performance"
+        description: "Tracks slow queries, transaction volume, and connection pool usage."
+        queries:
+          - id: "query-slow-queries"
+            name: "Slow Queries (>500ms)"
+            data: "57 queries above threshold"
+          - id: "query-connection-pool"
+            name: "DB Connection Pool Usage"
+            data: "80% utilization"
+          - id: "query-transaction-volume"
+            name: "Total Transactions"
+            data: "250,000 transactions"
+        slowQueries:
+          - query: "SELECT * FROM orders WHERE status = 'pending'"
+            executionTime: "720ms"
+            impact: "Delays order processing"
+          - query: "UPDATE users SET last_login = NOW() WHERE id = ?"
+            executionTime: "610ms"
+            impact: "Affects user authentication response times"
+
+  # ✅ Snapshot: API Traffic & Autoscaling
+  - id: "snapshot-api-traffic"
+    name: "API Traffic & Autoscaling"
+    createdAt: "2025-02-27T13:30:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-api-traffic"
+        name: "API Traffic & Autoscaling"
+        description: "Monitors request volume, response times, and autoscaling events."
+        queries:
+          - id: "query-total-requests"
+            name: "Total Requests"
+            data: "125,000 requests"
+          - id: "query-response-time-p95"
+            name: "P95 Response Time"
+            data: "420ms"
+          - id: "query-response-time-p99"
+            name: "P99 Response Time"
+            data: "980ms"
+        autoscalingEvents:
+          - timestamp: "2025-02-27T12:10:00Z"
+            event: "Scaling Up"
+            instancesBefore: 4
+            instancesAfter: 6
+          - timestamp: "2025-02-27T12:45:00Z"
+            event: "Scaling Down"
+            instancesBefore: 6
+            instancesAfter: 5
+
+  # ✅ Snapshot: Error Budget Tracking
+  - id: "snapshot-error-budget"
+    name: "Error Budget Tracking"
+    createdAt: "2025-02-28T12:30:00Z"
+    duration: "30 days"
+    contexts:
+      - id: "context-error-budget"
+        name: "Error Budget Tracking"
+        description: "Tracks remaining error budget and burn rate."
+        queries:
+          - id: "query-error-budget-remaining"
+            name: "Remaining Error Budget"
+            data: "3 hours 42 minutes"
+          - id: "query-burn-rate"
+            name: "Error Budget Burn Rate"
+            data: "0.5 hours per week"
+          - id: "query-forecast-depletion"
+            name: "Forecasted Depletion Date"
+            data: "2025-04-15"
+        errorBudget:
+          remaining: "3 hours 42 minutes"
+          burnRate: "0.5 hours per week"
+          depletionDate: "2025-04-15"
+
+  # ✅ Snapshot: Service Level Indicators (SLI)
+  - id: "snapshot-sli"
+    name: "Service Level Indicators (SLI)"
+    createdAt: "2025-02-28T12:00:00Z"
+    duration: "30 days"
+    contexts:
+      - id: "context-sli"
+        name: "Service Level Indicators (SLI)"
+        description: "Tracks real-time indicators for system performance and reliability."
+        queries:
+          - id: "query-availability"
+            name: "Service Availability"
+            data: "99.93%"
+          - id: "query-request-success-rate"
+            name: "Request Success Rate"
+            data: "99.87%"
+          - id: "query-response-time-p95"
+            name: "P95 Response Time"
+            data: "450ms"
+          - id: "query-response-time-p99"
+            name: "P99 Response Time"
+            data: "890ms"
+
+  # ✅ Snapshot: Service Level Objectives (SLO)
+  - id: "snapshot-slo"
+    name: "Service Level Objectives (SLO)"
+    createdAt: "2025-02-28T12:15:00Z"
+    duration: "30 days"
+    contexts:
+      - id: "context-slo"
+        name: "Service Level Objectives (SLO)"
+        description: "Defines reliability objectives based on SLIs."
+        queries:
+          - id: "query-target-availability"
+            name: "Target Availability"
+            data: "99.95%"
+          - id: "query-target-response-time-p95"
+            name: "Target P95 Response Time"
+            data: "<500ms"
+          - id: "query-target-error-rate"
+            name: "Target Error Rate"
+            data: "<0.1%"
+        sloThresholds:
+          - metric: "Availability"
+            actual: "99.93%"
+            target: "99.95%"
+            status: "Warning"
+          - metric: "P95 Response Time"
+            actual: "450ms"
+            target: "<500ms"
+            status: "OK"
+          - metric: "Error Rate"
+            actual: "0.12%"
+            target: "<0.1%"
+            status: "Critical"
+
+  # ✅ Snapshot: Service Level Agreements (SLA)
+  - id: "snapshot-sla"
+    name: "Service Level Agreements (SLA)"
+    createdAt: "2025-02-28T12:30:00Z"
+    duration: "30 days"
+    contexts:
+      - id: "context-sla"
+        name: "Service Level Agreement (SLA)"
+        description: "Tracks compliance with service level agreements."
+        queries:
+          - id: "query-sla-uptime"
+            name: "SLA Uptime"
+            data: "99.90%"
+          - id: "query-sla-violations"
+            name: "SLA Violations"
+            data: "2 incidents this month"
+          - id: "query-compensation-risk"
+            name: "Compensation Risk"
+            data: "$5,000 potential credits"
+        slaViolations:
+          - incident: "Major outage on 2025-02-15"
+            impact: "15-minute downtime"
+            compensation: "$2,500 credit"
+          - incident: "Partial outage on 2025-02-20"
+            impact: "8-minute downtime"
+            compensation: "$2,500 credit"

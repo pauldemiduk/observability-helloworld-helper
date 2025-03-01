@@ -1,38 +1,37 @@
-# observability-helloworld-helper
-Sample Hello World microservices implemented in Golang, Python, and C#. These microservices are designed to run in Kubernetes across AWS, GCP, and Azure, with built-in observability using OpenTelemetry.
+# Hello World Microservices - Observability Helper
 
+## Overview
+The **Hello World Microservices** project is designed to provide **observability-ready** service examples in multiple programming languages (**Golang, Python, C#**). These microservices are built to run in **Kubernetes** across **AWS, GCP, and Azure**, with **OpenTelemetry (OTEL)** for logs and **Prometheus** for metrics.
 
-# Hello World Microservices
-
-This repository contains sample **Hello World** microservices implemented in **Golang, Python, and C#**. These microservices are designed to run in **Kubernetes** across **AWS, GCP, and Azure**, with built-in **observability** using **OpenTelemetry**.
-
-## Features
-- **Multi-cloud deployment support** (AWS, GCP, Azure)
-- **Logging and Metrics** with OpenTelemetry (OTEL)
-- **Prometheus-compatible metrics exposure** on `/metrics` endpoint
-- **Industry-standard structured logging**
+### **Project Scope**
+This repository is part of the **Observability-Helloworld-Helper** solution, providing:
+- **Multi-cloud deployment examples** (AWS, GCP, Azure)
+- **Structured Logging** with OpenTelemetry (OTEL)
+- **Prometheus-compatible metrics** on `/metrics` endpoint
 - **Minimal yet scalable architecture**
+- **Docker & Kubernetes deployment options**
 
-## Microservices Overview
+## **Microservices Overview**
 
-| Language | Framework/Runtime | Logging | Metrics |
-|----------|------------------|---------|---------|
-| Golang   | Go 1.x           | OTEL    | Prometheus |
-| Python   | FastAPI          | OTEL    | Prometheus |
-| C#       | .NET 7+          | OTEL    | Prometheus |
+| Language | Framework/Runtime | Logging | Metrics | Status |
+|----------|------------------|---------|---------|--------|
+| Golang   | Go 1.x           | OTEL    | Prometheus | ✅ Advanced |
+| Python   | FastAPI          | OTEL    | Prometheus | 🚧 Planned |
+| C#       | .NET 7+          | OTEL    | Prometheus | 🚧 Planned |
+
+The **Golang service (`hello-world-go`) is the most advanced**, with full OpenTelemetry support. The Python and C# versions are planned to reach the same feature set.
 
 ## Getting Started
 
-### Prerequisites
+### **Prerequisites**
 Ensure you have the following installed:
-- **Docker**
-- **Kubernetes (minikube/kind or a cloud provider)**
-- **kubectl**
-- **Helm** (for deployment)
-- **Prometheus & Grafana** (for observability)
+- **Docker** (for local containerized execution)
+- **Kubernetes** (minikube/kind or a cloud provider)
+- **kubectl** (for Kubernetes deployments)
+- **Helm** (for deploying dependencies like OpenTelemetry)
+- **Prometheus & Grafana** (for observability monitoring)
 
-### Running Locally
-
+### **Running Locally**
 Each microservice has a `Dockerfile` and `docker-compose.yml`. To run locally:
 
 ```sh
@@ -40,25 +39,24 @@ Each microservice has a `Dockerfile` and `docker-compose.yml`. To run locally:
 git clone https://github.com/your-repo/hello-world-microservices.git
 cd hello-world-microservices
 
-# Build and run (example for Golang)
+# Start all services using Docker Compose
 docker-compose up --build
 ```
 
-### Kubernetes Deployment
-To deploy to Kubernetes, use Helm:
-
+## **Kubernetes Deployment**
+### **Using Helm**
 ```sh
-# Install dependencies
+# Install dependencies (OpenTelemetry Helm charts)
 helm repo add otel https://open-telemetry.github.io/opentelemetry-helm-charts
 helm repo update
 
 # Deploy microservice
-kubectl apply -f k8s/
+tkubectl apply -f k8s/
 ```
 
-## Observability
+## **Observability: Logs & Metrics**
 
-### Logs
+### **Structured Logging (JSON Format)**
 Each service outputs structured logs using OpenTelemetry:
 ```json
 {
@@ -71,20 +69,55 @@ Each service outputs structured logs using OpenTelemetry:
 }
 ```
 
-### Metrics
-Metrics are exposed on the `/metrics` endpoint in **Prometheus format**:
+### **Metrics (Prometheus Format)**
+Metrics are exposed on the `/metrics` endpoint:
 ```txt
 # HELP service_up 1 if the service is running
 # TYPE service_up gauge
 service_up{service="hello-world-golang"} 1
 ```
 
-## Contributing
+To scrape metrics using Prometheus:
+```yaml
+scrape_configs:
+  - job_name: 'hello-world-microservices'
+    static_configs:
+      - targets: ['localhost:8080']
+```
+
+## **API Documentation**
+### **Endpoints:**
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| **GET** | `/hello` | Returns a Hello World response |
+| **PUT** | `/inbound` | Processes inbound requests |
+| **PUT** | `/outbound` | Handles outbound service calls |
+| **GET** | `/status` | Returns service health check response |
+| **GET** | `/metrics` | Exposes Prometheus metrics |
+
+Example request:
+```sh
+curl -X GET http://localhost:8080/hello
+```
+
+## **Error Handling & Resilience**
+- **Panic Recovery:** Middleware automatically recovers from crashes.
+- **Graceful Shutdown:** Services handle SIGINT/SIGTERM signals cleanly.
+- **Missing Config Handling:** Default values and warning logs ensure smooth execution.
+
+## **Future Enhancements**
+- **Complete Python & C# implementations to match Golang**
+- **Improve batch processing & outbound request simulation**
+- **Enhance Kubernetes Helm charts for automated deployments**
+
+## **Contributing**
 1. Fork the repository
 2. Create a feature branch
 3. Open a pull request
 
-## License
+## **License**
 [MIT License](LICENSE)
 
+---
 
+This README serves as the **entry point for all implementations**, with **future per-language READMEs** planned as services evolve. 🚀 Let me know if any refinements are needed!

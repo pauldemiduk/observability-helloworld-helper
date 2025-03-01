@@ -21,7 +21,7 @@ RUN go build -o hello-world .
 
 # Set default environment variables
 ENV SERVICE_HOST="0.0.0.0"
-ENV SERVICE_PORT="8080"
+ENV SERVICE_PORT="9090"
 ENV CLOUD_PROVIDER="docker"
 ENV CLOUD_REGION="local"
 ENV CLOUD_ZONE="local"

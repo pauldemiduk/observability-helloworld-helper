@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/duke/Developer/hello-world-microservices/hello-world-csharp/hello-world-csharp.csproj": {}
+    "/Users/duke/Developer/observability-helloworld-helper/hello-world-microservices/hello-world-csharp/hello-world-csharp.csproj": {}
   },
   "projects": {
-    "/Users/duke/Developer/hello-world-microservices/hello-world-csharp/hello-world-csharp.csproj": {
+    "/Users/duke/Developer/observability-helloworld-helper/hello-world-microservices/hello-world-csharp/hello-world-csharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/duke/Developer/hello-world-microservices/hello-world-csharp/hello-world-csharp.csproj",
+        "projectUniqueName": "/Users/duke/Developer/observability-helloworld-helper/hello-world-microservices/hello-world-csharp/hello-world-csharp.csproj",
         "projectName": "hello-world-csharp",
-        "projectPath": "/Users/duke/Developer/hello-world-microservices/hello-world-csharp/hello-world-csharp.csproj",
+        "projectPath": "/Users/duke/Developer/observability-helloworld-helper/hello-world-microservices/hello-world-csharp/hello-world-csharp.csproj",
         "packagesPath": "/Users/duke/.nuget/packages/",
-        "outputPath": "/Users/duke/Developer/hello-world-microservices/hello-world-csharp/obj/",
+        "outputPath": "/Users/duke/Developer/observability-helloworld-helper/hello-world-microservices/hello-world-csharp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/duke/.nuget/NuGet/NuGet.Config"
@@ -47,9 +47,21 @@
               "target": "Package",
               "version": "[2.3.0, )"
             },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[7.2.0, )"
+            },
+            "prometheus-net": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            },
+            "prometheus-net.AspNetCore": {
+              "target": "Package",
+              "version": "[8.2.1, )"
             }
           },
           "imports": [

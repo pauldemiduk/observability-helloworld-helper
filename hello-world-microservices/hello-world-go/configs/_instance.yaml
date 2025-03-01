@@ -1,0 +1,112 @@
+Models:
+  _config: ""
+  _context: ""
+  _ingest_queue: ""
+  _workload_queue: ""
+
+Vars:
+  start_time: ""
+  mux_router: ""
+
+Startup-Flow:
+  log-start:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  new-router:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  register-routes:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  set-graph-schema:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  new-instance:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"  
+
+  load-config:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "yes"  # ✅ Capture detailed config values
+
+  load-config:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "yes"  # ✅ Capture detailed config values
+
+  load-service-context:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "yes"
+
+  setup-metrics:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  uptime-ticker:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  setup-tracing:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  load-log-context:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "yes"  # ✅ Capture full log context
+
+  register-handlers:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  start-http-server:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  channel-for-errors:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  listen-and-serve:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"
+
+  confirm-startup:
+    execute_step: "yes"
+    log_step: "yes"
+    log_outcome: "yes"
+    log_values: "no"

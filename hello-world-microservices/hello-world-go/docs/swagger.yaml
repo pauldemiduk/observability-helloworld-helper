@@ -1,0 +1,69 @@
+basePath: /
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample microservice API with OpenTelemetry and Swagger
+  title: Hello World API
+  version: "1.0"
+paths:
+  /hello:
+    get:
+      description: Responds with "Hello, World!"
+      operationId: hello
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Returns a greeting
+  /inbound:
+    put:
+      consumes:
+      - application/json
+      description: Handles inbound HTTP requests
+      operationId: inbound
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Processes inbound request
+  /outbound:
+    put:
+      consumes:
+      - application/json
+      description: Handles outbound HTTP requests
+      operationId: outbound
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Processes outbound request
+  /status:
+    get:
+      description: Check if the service is running
+      operationId: status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Health check
+swagger: "2.0"

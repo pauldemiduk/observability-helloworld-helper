@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN pip install --no-cache-dir flask requests flasgger prometheus_client
+RUN pip install --no-cache-dir flask requests flasgger prometheus_client waitress
 
 # Set default environment variables
 ENV SERVICE_HOST="0.0.0.0"

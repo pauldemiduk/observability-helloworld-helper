@@ -1,64 +1,81 @@
+using System;
+using System.Diagnostics;
+using System.Net;
+using System.Text.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddLogging();  // Ensure logging is available
-
-
-
-// ✅ Register Swagger services BEFORE building the app
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
-// ✅ Ensure Swagger is used correctly
-if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
+string serviceName = "hello-world-csharp";
+string runtimeLanguage = "C#";
+string cloudProvider = "docker";
+string region = "local";
+string zone = "local";
+string ipAddress = Dns.GetHostAddresses(Dns.GetHostName())[0].ToString();
+int servicePid = Environment.ProcessId;
+string K8sContainerID = "unknown";
+
+void Log(string level, string operation, string message, long? duration = null, string outcome = "")
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var logEntry = new
+    {
+        timestamp = DateTime.UtcNow.ToString("o"),
+        log_level = level,
+        service_name = serviceName,
+        service_operation = operation,
+        runtime_language = runtimeLanguage,
+        cloud_provider = cloudProvider,
+        region = region,
+        zone = zone,
+        ip_address = ipAddress,
+        service_pid = servicePid,
+        container_id = containerId,
+        call_duration = duration,
+        call_outcome = outcome,
+        message = message
+    };
+    Console.WriteLine(JsonSerializer.Serialize(logEntry));
 }
 
-// Function to retrieve cloud metadata from environment variables or default values
-string GetCloudMetadata(string variable, string defaultValue) => 
-    Environment.GetEnvironmentVariable(variable) ?? defaultValue;
+Log("INFO", "start", "Service started successfully");
 
-// Get runtime language from environment variables
-string runtimeLanguage = GetCloudMetadata("RUNTIME_LANGUAGE", "C#");
-
-// Route: "/hello"
 app.MapGet("/hello", async (HttpContext context) =>
 {
-    var provider = GetCloudMetadata("CLOUD_PROVIDER", "docker");
-    var region = GetCloudMetadata("CLOUD_REGION", "local");
-    var zone = GetCloudMetadata("CLOUD_ZONE", "local");
-
-    string response = $"Hello, World! (Language: {runtimeLanguage}, Provider: {provider}, Region: {region}, Zone: {zone})";
-
-    // Log request with standardized format
-    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation("👋 Received request at /hello | Language: {Language}, Provider: {Provider}, Region: {Region}, Zone: {Zone}", 
-                          runtimeLanguage, provider, region, zone);
-
-    await context.Response.WriteAsync(response);
+    var stopwatch = Stopwatch.StartNew();
+    Log("INFO", "hello", "Operation started");
+    await context.Response.WriteAsync($"Hello, World! (Language: {runtimeLanguage}, Provider: {cloudProvider}, Region: {region}, Zone: {zone})");
+    stopwatch.Stop();
+    Log("INFO", "hello", "Operation completed", stopwatch.ElapsedMilliseconds, "pass");
 });
 
-// Get host and port from environment variables (default: 8082)
-string host = GetCloudMetadata("SERVICE_HOST", "0.0.0.0");
-string port = GetCloudMetadata("SERVICE_PORT", "8082");
+app.MapPost("/inbound", async (HttpContext context) =>
+{
+    var stopwatch = Stopwatch.StartNew();
+    Log("INFO", "inbound", "Operation started");
+    await context.Response.WriteAsync(JsonSerializer.Serialize(new { status = "inbound request processed" }));
+    stopwatch.Stop();
+    Log("INFO", "inbound", "Operation completed", stopwatch.ElapsedMilliseconds, "approved");
+});
 
-// Construct correct URL format
-string url = $"http://{host}:{port}";
+app.MapPost("/outbound", async (HttpContext context) =>
+{
+    var stopwatch = Stopwatch.StartNew();
+    Log("INFO", "outbound", "Operation started");
+    await context.Response.WriteAsync(JsonSerializer.Serialize(new { status = "outbound request processed" }));
+    stopwatch.Stop();
+    Log("INFO", "outbound", "Operation completed", stopwatch.ElapsedMilliseconds, "declined");
+});
 
-var logger = app.Services.GetRequiredService<ILogger<Program>>();
-logger.LogInformation("🚀 Starting Hello World {Language} service on {Url} | Provider: {Provider}, Region: {Region}, Zone: {Zone}",
-                      runtimeLanguage, url, GetCloudMetadata("CLOUD_PROVIDER", "docker"), 
-                      GetCloudMetadata("CLOUD_REGION", "local"), 
-                      GetCloudMetadata("CLOUD_ZONE", "local"));
+app.MapGet("/status", async (HttpContext context) =>
+{
+    Log("INFO", "status", "Health check operation started");
+    await context.Response.WriteAsync(JsonSerializer.Serialize(new { status = "service running" }));
+    Log("INFO", "status", "Health check operation completed", 0, "pass");
+});
 
-app.Run(url);  // Start the application
+app.Run("http://0.0.0.0:9092");
+

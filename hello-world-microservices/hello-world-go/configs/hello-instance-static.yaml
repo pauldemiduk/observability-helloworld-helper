@@ -1,0 +1,216 @@
+HelloInstance:  # Running service instance
+
+  ServiceConfig:  # Environment or Default settings
+    # ✅ Service Metadata
+    ServiceName: "hello-world-go"  # Logical service name
+    ServiceVersion: "unknown"  # Service version, set dynamically at runtime
+    ServiceHostname: "0.0.0.0"  # Hostname or IP the service binds to
+    ServiceIP: "127.0.0.1"  # Internal IP address of the service
+    ServicePort: 8080  # Listening port of the service
+
+    # ✅ Application Environment
+    Environment: "dev"  # Deployment environment (dev, staging, prod)
+
+    # ✅ Logging Configurations
+    LogLevel: "info"  # Logging level (debug, info, warn, error)
+    LogBackend: "stdout"  # Logging destination (stdout, file, Loki, CloudWatch, etc.)
+    LogFile: ""  # Log file path (if file-based logging is enabled)
+    LogSampleRate: 0.3  # Percentage of logs sampled for analysis (0.0 - 1.0)
+
+    # ✅ Log Rotation Settings
+    LogRotationEnabled: true  # Enables or disables log rotation
+    LogRotationSizeMB: 10  # Maximum size (MB) before log rotation occurs
+    LogRetentionCount: 5  # Number of rotated log files to retain
+    LogMaxSizeMB: 100  # Maximum size before logs start over (if rotation disabled)
+
+    # ✅ Observability Endpoints
+    LokiEndpoint: ""  # URL for Loki log aggregation service
+    CloudWatchEndpoint: ""  # AWS CloudWatch logging endpoint
+    GCPLoggingEndpoint: ""  # Google Cloud Logging endpoint
+    AzureMonitorEndpoint: ""  # Azure Monitor Logs endpoint
+
+    # ✅ Response Time Buckets
+    ResponseTimeFast: 200.0  # Fast response threshold (in ms)
+    ResponseTimeModerate: 500.0  # Moderate response threshold (in ms)
+    ResponseTimeSlow: 1000.0  # Slow response threshold (in ms)
+
+    # ✅ Response Latency Buckets (for alerting on latency issues)
+    ResponseLatencyNormal: 500.0  # Upper bound for "normal" response latency
+    ResponseLatencyWarning: 1000.0  # Upper bound for "warning" level response latency
+    ResponseLatencyCritical: 2000.0  # Upper bound for "critical" latency requiring attention
+
+  ServiceContext:  # Runtime context and metadata
+
+    RequestMetadata:  # Captures all HTTP request metadata
+      # ✅ Core Metadata
+      Operation: ""  # Type of operation (hello, inbound, outbound)
+      RequestID: ""  # Unique identifier for the request
+      RequestURL: ""  # Full request URL (path + query parameters)
+
+      # ✅ Request Details
+      RequestMethod: ""  # HTTP method used (GET, POST, PUT)
+      RequestSizeBytes: 0  # Size of the request payload in bytes
+      RequestHeaders: {}  # Captures all request headers
+
+      # ✅ Client Information
+      ClientIP: ""  # IP address from request header
+      ClientPort: 0  # Port number from request header
+      UserAgent: ""  # User-Agent string from the client
+      Origin: ""  # Origin header value, indicating request source
+      Referer: ""  # Referrer URL from headers
+      Protocol: ""  # HTTP/HTTPS protocol
+      TLSProtocolVersion: ""  # TLS version used (if applicable)
+
+      # ✅ Authentication & Identity
+      AuthHeaderStatus: ""  # Whether Authorization header is present
+      UserSessionID: ""  # Unique session identifier (if available)
+      ClientID: ""  # Unique client identifier from headers
+      UserID: ""  # Authenticated user ID (if available)
+
+      # ✅ Distributed Tracing & Correlation
+      TraceID: ""  # OpenTelemetry Trace ID for tracing
+      ParentTraceID: ""  # Parent Trace ID (if part of larger trace)
+      SpanID: ""  # OpenTelemetry Span ID
+      CorrelationID: ""  # Correlation ID to track across systems
+
+    ResponseMetadata:  # Captures all HTTP response metadata
+      # ✅ Response Status
+      HTTPStatusCode: 0  # HTTP status code (e.g., 200, 404, 500)
+      ResponseOutcome: ""  # High-level response outcome (success, failure, retry)
+
+      # ✅ Response Timing
+      ResponseTimeMS: 0.0  # Time taken to generate response in milliseconds
+      ResponseTimeCategory: ""  # Categorization (fast, normal, slow)
+
+      # ✅ Response Content
+      ResponseSizeBytes: 0  # Outgoing response size in bytes
+      ResponseHeaders: {}  # Captures response headers
+
+    LogContext:  # Structured logging context
+
+      # ✅ Service Metadata (Core Information)
+      ServiceName: ""
+      ServiceVersion: ""
+      ServiceHostname: ""
+      ServiceIP: ""
+      ServicePort: 0
+      InstanceID: ""
+
+      # ✅ Host & Process Details
+      ProcessID: 0
+      ThreadID: 0
+      NodeIP: ""
+      NodePort: 0
+      LoadBalancerIP: ""
+
+      # ✅ Cloud & Infrastructure Metadata
+      CloudProvider: ""
+      CloudRegion: ""
+      AvailabilityZone: ""
+
+      # ✅ Kubernetes Metadata (Containerized Deployments)
+      K8sNamespace: ""
+      K8sPodName: ""
+      K8sContainerID: ""
+
+      # ✅ User Session Metadata
+      UserSessionID: ""
+
+    LogEntryOptions:  # Dynamic log entry options
+      LRW: ""  # Response writer interface
+      Request: ""  # Incoming HTTP request object
+      StartTime: ""
+      Duration: 0.0
+      QueueTimeMS: 0.0
+      LogCtx: ""  # Logging context
+      LogLevel: "info"
+      LogType: "request"
+      RequestMetadata: {}
+      ResponseMetadata: {}
+      RequestStage: "received"
+      Message: ""
+      ErrorMessage: ""
+      StackTrace: ""
+
+    LogEntry:  # Structured log entry
+      Timestamp: ""
+      Environment: "dev"
+      LogLevel: "info"
+      ServiceName: ""
+      ServiceVersion: ""
+      ServiceHostname: ""
+      ServiceIP: ""
+      ServicePort: 0
+      ProcessID: 0
+      ThreadID: 0
+      InstanceID: ""
+      Language: "go"
+
+      # ✅ Request Details
+      RequestID: ""
+      Operation: ""
+      RequestMethod: ""
+      RequestURL: ""
+      RequestSizeBytes: 0
+      RequestHeaders: {}
+      ClientIP: ""
+      ClientPort: 0
+      UserAgent: ""
+      Origin: ""
+      Referer: ""
+      Protocol: ""
+      TLSProtocolVersion: ""
+      AuthHeaderStatus: ""
+      RequestStage: ""
+      ClientID: ""
+      UserSessionID: ""
+      TraceID: ""
+      ParentTraceID: ""
+      SpanID: ""
+      CorrelationID: ""
+      UserID: ""
+
+      # ✅ Response Details
+      HTTPStatusCode: 0
+      ResponseOutcome: ""
+      ResponseSizeBytes: 0
+      ResponseTimeMS: 0.0
+      ResponseTimeCategory: ""
+      ResponseHeaders: {}
+
+      # ✅ Debugging & Observability
+      CallerFunction: ""
+      ExecutionUnitID: 0
+      CallerLocation: ""
+      ComputeTimeMS: 0.0
+      QueueTimeMS: 0.0
+      ResponseLatencyLevel: ""
+
+      # ✅ System Performance Metrics
+      CPUUsage: 0.0
+      MemoryUsage: 0.0
+
+      # ✅ Error Details
+      ErrorMessage: ""
+      StackTrace: ""
+
+      # ✅ Log Message
+      Message: ""
+
+  SendLog:  # Asynchronous logging process
+    BuildLogEntry:
+      - buildRequestLogEntry
+      - buildResponseLogEntry
+      - buildExecutionLogEntry
+      - buildErrorLogEntry
+      - LogJson
+    processLog:
+      - validateLogEntry
+      - WriteLog
+      - ManageLogRotation
+      - PostLog
+    LogEndpoint:
+      - LokiEndpoint
+      - CloudWatchEndpoint
+      - GCPLoggingEndpoint
+      - AzureMonitorEndpoint

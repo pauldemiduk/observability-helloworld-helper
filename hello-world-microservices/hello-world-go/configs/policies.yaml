@@ -1,0 +1,21 @@
+policies:
+  filtering:
+    drop_events_below_severity: warning
+    drop_categories: ["debug", "audit"]
+    reject_if_missing_fields: ["event_id", "trace_id"]
+
+  enrichment:
+    add_metadata: 
+      - name: "source_service"
+        value: "hello-world-go"
+      - name: "processing_timestamp"
+        type: "timestamp"
+
+  routing:
+    rules:
+      - condition: "severity == 'critical'"
+        action: "route_to_workload_queue"
+      - condition: "category == 'metric'"
+        action: "log_only"
+      - condition: "event_id contains 'test'"
+        action: "discard"

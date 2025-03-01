@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: Hello World API
+  version: 1.0.0
+  description: A simple API demonstrating OpenTelemetry and logging in Golang
+servers:
+  - url: http://localhost:8080
+paths:
+  /hello:
+    get:
+      summary: Returns a greeting message
+      operationId: getHello
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Received request at /hello. Hello, World!"
+
+  /inbound:
+    put:
+      summary: Processes an inbound request
+      operationId: putInbound
+      responses:
+        "200":
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Received request at /inbound. Request processed successfully."
+
+  /outbound:
+    put:
+      summary: Processes an outbound request
+      operationId: putOutbound
+      responses:
+        "200":
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Received request at /outbound. Request processed successfully."
+
+  /status:
+    get:
+      summary: Returns the service status
+      operationId: getStatus
+      responses:
+        "200":
+          description: Service is running
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Received request at /status. Service is running..."

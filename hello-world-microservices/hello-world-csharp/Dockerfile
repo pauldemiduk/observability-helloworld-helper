@@ -15,6 +15,7 @@ COPY . .
 
 # Publish the application
 RUN dotnet publish -c Release -o /app/out
+# RUN dotnet publish -c Release -o /app/build-out
 
 # Use a lightweight .NET runtime for running the app
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
@@ -27,7 +28,7 @@ COPY --from=build /app/out .
 
 # Set default environment variables
 ENV SERVICE_HOST="0.0.0.0"
-ENV SERVICE_PORT="8082"
+ENV SERVICE_PORT="9092"
 ENV CLOUD_PROVIDER="docker"
 ENV CLOUD_REGION="local"
 ENV CLOUD_ZONE="local"
@@ -38,3 +39,4 @@ EXPOSE ${SERVICE_PORT}
 
 # Command to run the application
 CMD ["dotnet", "hello-world-csharp.dll"]
+# CMD ["dotnet", "/app/build-out/hello-world-csharp.dll"]
