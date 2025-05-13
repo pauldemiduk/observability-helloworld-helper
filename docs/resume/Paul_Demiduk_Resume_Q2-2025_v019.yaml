@@ -1,0 +1,136 @@
+### -------------- RESUME CONTENT
+
+### -------------- RESUME HEADER
+Resume-Header:
+  Principal Platform Engineer | Observability & Reliability Architect
+
+Resume-Intro:
+  Platform Engineering Leader with 15+ years delivering cloud-native observability platforms, SRE tooling, and scalable microservices at enterprise scale. 
+  Passionate about empowering engineering teams with actionable insights, intelligent automation, and delightful developer experiences.
+
+
+### -------------- SKILLS HIGHLIGHTS
+Core-Skills: 
+  Observability Engineering, Incident Management, Platform Architecture, Site Reliability, DevOps Automation, Event Processing, Microservices, Cloud-Native Systems
+
+Tools-&-Tech: 
+  Prometheus, Grafana, OpenTelemetry, Kafka, Golang, GraphQL, Redis, Couchbase, Docker, Kubernetes, Terraform, AWS, GCP, Azure
+
+
+### -------------- PROFESSIONAL SUMMARY
+Professional-Summary:
+
+    Engineering Leadership and Strategy:
+    - •	Led full-stack engineering teams and drove Agile/SAFe software development and delivery.
+    - •	Defined technology strategy, roadmaps, and enterprise platform architectures.
+    - •	Mentored and fostered a culture of collaboration, learning, and technical excellence.
+    - •	Drove continuous learning, improvement, automation, and DevOps support practices.
+
+    Observability and Monitoring:
+    - •	Led the product, platform, and engineering efforts (2016–2024) for SAHARA, a key enterprise observability platform at American Express (Smart Analysis Healing and Recovery Automation), evolving it from concept to enterprise-wide incident intelligence platform.
+    - •	Helped Amex incubate and memorialize “Customer Journey” scorecards, methodologies and solutions to measure and report customer experience, service quality and availability to senior executives, business stakeholders, support teams, and regulators.
+    - •	Deep expertise in logs, metrics, traces, alerts, incidents, notifications, escalations, and automated self-healing actions to drive operational efficiency and customer experience excellence.
+
+    Enterprise-Scale Software Development:
+    - •	Built scalable microservices and distributed systems using modern cloud-native architectures.
+    - •	Full-stack development expertise, including APIs, databases, and UI frameworks
+    - •	Developed the SAHARA observability platform using Golang, C#, and Python — integrating Redis, Couchbase, RabbitMQ, GraphQL, MySQL, Elastic/Kibana, Prometheus, and Grafana.
+    - •	Built for enterprise-scale resilience to support critical ITSM workflows, ensuring high availability and business continuity.
+    
+    Agile, SAFe and Cross-Functional Collaboration:
+    - •	Over 10 years of experience leading Agile and Scrum delivery across global engineering teams, with 4 years of scaled delivery using SAFe practices.
+    - •	Fostered strong partnerships with product, business, and technology stakeholders to deliver purpose-built solutions and shared enterprise services.
+    - •	Led cross-functional teams to deliver high-impact software solutions with iterative, value-driven development.
+
+
+
+### -------------- THIS IS ON LINKED IN, BUT NOT ON THE RESUME =>
+##  --------------    open source projects are referenced on page 3
+Upskill-Experience:
+
+  Technical Sabbatical - Hands-On Rebuild & Open-Source Creation:
+    After 15 years leading platform and observability engineering at scale, I took a pause — not to escape, but to recalibrate. 
+    I needed space to think clearly again. To shed noise. To reconnect with the kind of work that fuels real momentum.
+    I've used this time to refresh my technical foundation, rebuild hands-on confidence, and dive deep into problems I care about — developer experience, system clarity, signal storytelling. 
+    I began shaping open-source tools and composable patterns not just to solve technical problems, but to help engineers move faster and feel more confident in complex environments.
+
+    Open-Source Projects
+    Recent hands-on work focused on schema-driven observability, developer experience, and automation-first engineering using composable schema and open patterns for blending observability, availability, and service quality.
+
+    - •	Code Blueprint Utility - recursive Go scanner for extracting metadata and observability patterns. 
+    - •	GraphQL Snapshot Engine - observability-aware query engine for surfacing service quality context. 
+    - •	MDM Scorecard Engine - transforms golden signals into digital service quality fingerprints. 
+    - •	Middleware Library - drop-in Go components to inject observability logic with minimal friction. 
+    - •	Release Train YAML System - GitHub-native, schema-driven framework for managing product stories. 
+    - •	Learning Repo - starter toolkit for observability concepts, signal flows, and composable schemas.
+
+    This isn't a detour. It's a reset, grounded in curiosity, clarity, and commitment.
+
+### -------------- RESUME WORK EXPERIENCE STARTS HERE
+Work-Experience:
+
+### -------------- DIRECTOR ROLES
+  Engineering Director, Enterprise Cloud, 2022 - 2024:
+  - SAHARA platform roadmap, engineering and support
+  - Led the product, platform, and engineering efforts (2016-2024) for SAHARA, a key enterprise observability platform at American Express (Smart Analysis Healing and Recovery Automation).
+  - Enabled standardized Prometheus/Grafana solutions and service using infra-as-code for Amex engineeing and support teams. 
+  - Integrations to multi-cloid App and Database provisioning platforms reducing setup time by 95% and increasing adoption and coverage for hundreds of apps/teams.
+  - Helped Amex innovate and memorialize “Customer Journey” scorecards, methodologies and solutions to measure and report customer experience, service quality and availability to senior executives, business and support stakeholders and regulators.    
+    
+  Engineering Director, Enterprise Growth, Global Technology Operations, 2016 - 2022:
+  - SAHARA platform roadmap, engineering and support
+  - Designed SAHARA (US Patent ** US20210034440A1) an enterprise incident management hub.      
+  - Built and scaled a robust, and resilient data pipeline to normalize, enrich, and process high-volume event streams
+  - Enabled 200+ integrations with enterprise monitoring tools, tech stacks, and business platforms.
+  - Enabled RESTful API's for seamless incident creation in ServiceNow, CMDB, GitHub, Prometheus, and Amex app and database build and provisioning platforms.
+  - Implemented actions and outocmes for ITSM incidents, Slack & email notifications, and AIOps correlation to enable collaborative problem-solving and impact remediation.
+      
+  Engineering Director, Enterprise Growth, 2014 - 2016:
+  - Led logging and monitoring for the Amex Prepaid Platform, designing and implementing a high-resolution Graphite/Grafana time-series metrics solution ingesting millions of metrics per minute.
+  - Developed custom monitoring agents leveraging log appenders to extract real-time application and infrastructure health insights from Splunk UDP logs.
+  - Automated weekly error budget reporting, enhancing transparency and accountability across leadership and engineering teams.
+        
+  Engineering Director, Enterprise Growth, 2012 - 2014:
+  - Led full-stack engineering for Amex Serve Prepaid Platform, focused on --
+  - Transaction processing services ensuring seamless financial transactions.
+  - Customer acquisition and account lifecycle capabilities to drive growth.
+  - Core API and service development for enhanced platform functionality.  
+
+
+### -------------- ENGINEER ROLES
+  Tech Lead, Enterprise Growth, 2010 - 2012:
+  - Full-stack engineering for PIN-based credit card processing and peer money transfers, call center servicing, account management, and dynamic platform configuration capabilities.
+      
+  Senior Engineer, Travel Related Services, 2010:
+  - Full-stack engineering of customer-facing capabilities and call center servicing solutions.
+  
+  Dev/Contract, Revolution Money, 2009 - 2010 (Acquisition by Amex):
+  - Full-stack engineering of customer-facing capabilities and call center servicing solutions.
+    
+
+### -------------- RESUME EXTRA SECTIONS
+Education:
+  - •	(BS), Bachelor of Science, Electrical Engineering and Technology
+  - •	DeVry Institute of Technology, Lombard, IL
+
+Patent:
+  - •	US Patent * US20210034440A1 -- Event information processing system, published 02/04/2021, status is Active.
+
+Awards: 
+  - •	2019 Amex Genius Award for Innovation -- Event information processing system patent approved for filing by Amex legal.
+  - •	2015 Amex Presidents Award for Innovation -- Enterprise time series solution based on Graphite-Grafana successfully implemented and delivering business results.
+
+Open-Source Projects:
+  Recent hands-on work focused on schema-driven observability, developer experience, and automation-first engineering using composable schema and open patterns for blending observability, availability, and service quality.
+
+  - •	Code Blueprint Utility - recursive Go scanner for extracting metadata and observability patterns. 
+  - •	GraphQL Snapshot Engine - observability-aware query engine for surfacing service quality context. 
+  - •	MDM Scorecard Engine - transforms golden signals into digital service quality fingerprints. 
+  - •	Middleware Library - drop-in Go components to inject observability logic with minimal friction. 
+  - •	Release Train YAML System - GitHub-native, schema-driven framework for managing product stories. 
+  - •	Learning Repo - starter toolkit for observability concepts, signal flows, and composable schemas.
+
+Additional Technologies:
+  Python, Golang, C#, .NET, RabbitMQ, Redis, Couchbase, MySQL, Oracle, Stored Procedures, DDL, DML, OAuth, JavaScript, DHTML, CSS, Prometheus, Grafana, Graphite, OpenTelemetry (OTEL), Splunk, SCOM, SolarWinds, Dynatrace, Elastic/Kibana, GraphQL, Docker, Kubernetes, Terraform, Ansible, Helm, AWS, GCP, Azure, CI-CD, Monitoring, Dashboards, Alerts, ServiceNow
+
+
