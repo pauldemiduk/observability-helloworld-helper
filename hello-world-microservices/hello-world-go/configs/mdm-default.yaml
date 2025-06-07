@@ -1,0 +1,18 @@
+# Default MDM Config (mdm_default.yaml)
+
+personalization:
+  visibility:
+    show_latency: true
+    show_error_rate: true
+    show_traffic: true
+    show_saturation: true
+  thresholds:
+    latency:
+      p95: 500ms
+      p99: 1000ms
+    error_rate:
+      warning: 1%
+      critical: 5%
+  scorecard:
+    enabled: true
+    show_summary: true

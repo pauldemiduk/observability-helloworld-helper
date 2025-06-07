@@ -1,0 +1,63 @@
+# code-blueprint.yaml - 
+# configuration for blueprint.go utility script
+settings:
+  config_file_path: "../../configs/code-blueprint.yaml"  
+  collection_mode: "collect_first"  # Options: "collect_first" or "write_directly"
+default_approach:
+  output_management:
+    latest_file: "code-blueprint-latest.txt"  # Always ensure the latest file has this name
+    timestamp_format: "2006-01-02_15-04-05"  # Ensures unique timestamp per file to rename old versions
+    enable_rotation: true  # If true, rotate old versions instead of overwriting
+    rename_existing:
+      pattern: "code-blueprint-[{timestamp}].txt" # Format for renaming old versions
+      preserve_old_versions: true  # Prevents old versions from being lost
+    latest_symlink: false  # Maintain a symlink for the latest version
+    max_history: 10  # Retain only the last 10 blueprint files
+  code_scan_toggles:  # These control regex matches for basic code structure & what gets collected and written to the output
+    include_functions: true  # mvp1, added internal/external
+    include_structs: true
+    include_interfaces: true
+    include_imports: true
+    include_comments: true
+    include_internal_functions: true  # more fine grained
+    include_external_functions: true  # more fine grained
+    include_call_map: true
+    include_observability: true            
+  observability_scan_toggles:  # These control regex matches for observability hints
+    logs: true
+    metrics: true
+    traces: true
+    debug: true
+    info: true
+    error: true
+    fatal: true
+    alerts: true
+    incidents: true    
+  exclusions:
+    skip_directories:
+      - "vendor"
+      - ".git"
+      - "node_modules"
+      - "bin"
+      - "obj"
+    skip_files:
+      - "_test.go"
+      - "mock_"
+      - "generated_"
+  code_scan_expressions:
+    package: "^package\\s+(\\w+)"
+    function: "^func\\s+(\\(.*\\)\\s+)?(\\w+)"
+    struct: "^type\\s+(\\w+)\\s+struct"
+    interface: "^type\\s+(\\w+)\\s+interface"
+    import: "^import\\s+\"(.*?)\""
+    comment: "^//(.*)"
+  observability_scan_expressions:
+    logs: "\\b(log\\.[A-Za-z]+\\()"
+    metrics: "\\b(metrics\\.[A-Za-z]+\\()"
+    traces: "\\b(trace\\.[A-Za-z]+\\()"
+    debug: "\\b(log\\.Debugf?\\()"
+    info: "\\b(log\\.Infof?\\()"
+    error: "\\b(log\\.Errorf?\\()"
+    fatal: "\\b(log\\.Fatalf?\\()"
+    alerts: "\\b(alert\\.[A-Za-z]+\\()"
+    incidents: "\\b(incident\\.[A-Za-z]+\\()"    

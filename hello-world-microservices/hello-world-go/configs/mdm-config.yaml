@@ -1,0 +1,8 @@
+# User MDM Config (mdm_config.yaml)
+
+personalization:
+  visibility:
+    show_traffic: false  # User disables traffic monitoring
+  thresholds:
+    latency:
+      p95: 300ms  # User adjusts p95 threshold

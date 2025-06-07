@@ -1,0 +1,72 @@
+# _startup_flow_steps.yaml
+# 
+# _startup-flow-steps.yaml explained:
+#   Purpose: This is a reference artifact to help explain service data flows and lifecyle.
+#   Description: 
+#   
+#   Startup-Flow-Detailed: Detailed steps of the service startup sequence
+#   Startup-Flow-Simple: Simple steps of the service startup sequence with logical groupings
+#     Router: Api setup and initialization.
+#      Graph: GraphQL setup and initialization.
+#        Service: HelloInstance setup and initialization.
+#          Observability: Logs, Traces, Metrics setup and initialization. 
+#            Handler: Http hander setup and initialization.
+#              Ready: Final steps to complete the startup
+
+# Composition	
+Startup-Flow-Simple:
+  Router:
+    Graph:
+      Service:
+        Observability:
+          Handler:
+            Ready:
+
+
+Startup-Flow-Detailed:
+  log-start:
+    new-router:
+      register-routes:
+        set-graph-schema:
+          new-instance:
+            load-config:
+              load-service-context:
+                setup-metrics:
+                  uptime-ticker:
+                    setup-tracing:
+                      load-log-context:
+                        register-handlers:
+                          start-http-server:
+                            channel-for-errors:
+                              listen-and-serve:
+                                confirm-startup:
+
+# Component details
+Router:
+	new-router:
+    register-routes(/r):
+
+Graph:
+  set-graph-schema:
+
+Service:
+	new-instance:
+    load-config:
+      load-service-context:
+
+Observability:
+	setup-metrics:
+  uptime-ticker:
+  setup-tracing:
+  load-log-context:
+
+Handler:
+	register-handlers:
+  
+Ready
+  start-http-server:
+  channel-for-errors:
+  listen-and-serve:
+  confirm-startup:
+
+

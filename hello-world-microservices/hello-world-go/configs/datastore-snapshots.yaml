@@ -1,0 +1,148 @@
+  # ✅ Snapshot: Error Rates
+  - id: "snapshot-error-rates"
+    name: "Error Rates Over 24 Hours"
+    createdAt: "2025-02-27T12:00:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-error-rates"
+        name: "API Failure Trends"
+        description: "Tracks the percentage of failed requests over time."
+        queries:
+          - id: "query-api-errors"
+            name: "API Error Rate"
+            data: "5.2% failure rate"
+        errorRates:
+          - id: "error-rate-1"
+            name: "API Failure Rate"
+            totalRequests: 10000
+            failedRequests: 520
+            errorRate: 5.2
+            topErrorCodes:
+              - code: 500
+                count: 300
+              - code: 404
+                count: 150
+              - code: 403
+                count: 70
+            failedEndpoints:
+              - endpoint: "/checkout"
+                failures: 220
+                failureRate: 2.2
+              - endpoint: "/login"
+                failures: 180
+                failureRate: 1.8
+              - endpoint: "/search"
+                failures: 120
+                failureRate: 1.2
+
+  # ✅ Snapshot: Slow API Calls
+  - id: "snapshot-slowest-api"
+    name: "Slowest API Calls Over 24 Hours"
+    createdAt: "2025-02-27T12:30:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-slowest-api"
+        name: "Slow API Call Trends"
+        description: "Tracks API requests that exceed predefined latency thresholds."
+        queries:
+          - id: "query-api-latency"
+            name: "Slowest API Calls"
+            data: "P99: 1200ms"
+        slowAPICalls:
+          - id: "slow-call-1"
+            name: "Slowest API Calls"
+            slowRequests: 145
+            p95Latency: 800
+            p99Latency: 1200
+            topEndpoints:
+              - endpoint: "/checkout"
+                latency: 1300
+              - endpoint: "/login"
+                latency: 1100
+              - endpoint: "/search"
+                latency: 950
+
+  # ✅ Snapshot: SLA Violations
+  - id: "snapshot-sla-violations"
+    name: "SLA Violations Over 24 Hours"
+    createdAt: "2025-03-08T12:00:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-sla-breaches"
+        name: "SLA Compliance Tracking"
+        description: "Monitors SLA breaches over the past 24 hours."
+        queries:
+          - id: "query-sla-violations"
+            name: "SLA Violation Count"
+            data: "15 breaches in 24 hours"
+            _url: "http://localhost:9090/api/v1/query"
+            _query: "count_over_time(http_requests_total{status=~'5..'}[24h])"
+        slaViolations:
+          - id: "sla-breach-1"
+            name: "Critical SLA Breach"
+            affectedService: "checkout-api"
+            breachTime: "2025-03-08T08:30:00Z"
+            reason: "Latency exceeded 2000ms threshold"
+            impact: "High"
+          - id: "sla-breach-2"
+            name: "Major SLA Breach"
+            affectedService: "auth-service"
+            breachTime: "2025-03-08T07:15:00Z"
+            reason: "Request failure rate exceeded 5%"
+            impact: "Moderate"
+
+  # ✅ Snapshot: SLO Compliance Tracking
+  - id: "snapshot-slo-compliance"
+    name: "SLO Compliance Over 24 Hours"
+    createdAt: "2025-03-08T12:30:00Z"
+    duration: "24 hours"
+    contexts:
+      - id: "context-slo-tracking"
+        name: "Service Level Objective Tracking"
+        description: "Tracks SLO adherence for response time and availability."
+        queries:
+          - id: "query-slo-metrics"
+            name: "SLO Performance Metrics"
+            data: "99.8% uptime, 96% requests within latency target"
+            _url: "http://localhost:9090/api/v1/query"
+            _query: "avg_over_time(probe_success[24h]) * 100"
+        sloCompliance:
+          - id: "slo-metric-1"
+            name: "Uptime SLO Compliance"
+            target: "99.9% uptime"
+            actual: "99.8%"
+            status: "Near Violation"
+          - id: "slo-metric-2"
+            name: "Latency SLO Compliance"
+            target: "95% requests < 500ms"
+            actual: "96%"
+            status: "Compliant"
+
+  # ✅ Snapshot: Error Budget Monitoring
+  - id: "snapshot-error-budget"
+    name: "Error Budget Consumption Over 30 Days"
+    createdAt: "2025-03-08T12:45:00Z"
+    duration: "30 days"
+    contexts:
+      - id: "context-error-budget"
+        name: "Error Budget Tracking"
+        description: "Tracks error budget consumption and forecasts depletion."
+        queries:
+          - id: "query-error-budget"
+            name: "Error Budget Remaining"
+            data: "24% remaining, projected depletion in 5 days"
+            _url: "http://localhost:9090/api/v1/query"
+            _query: "(1 - (sum(rate(http_requests_total{status=~'5..'}[30d])) / sum(rate(http_requests_total[30d])))) * 100"
+        errorBudget:
+          - id: "error-budget-1"
+            name: "Remaining Error Budget"
+            totalAllocated: "100 hours"
+            used: "76 hours"
+            remaining: "24 hours"
+            depletionForecast: "5 days"
+          - id: "error-budget-2"
+            name: "Recent Error Spikes"
+            eventTime: "2025-03-06T14:00:00Z"
+            cause: "API failure rate exceeded 3%"
+            budgetImpact: "Reduced by 4 hours"
+
